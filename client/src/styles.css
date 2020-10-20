@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.display-flex {
+  display: flex;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-space-around {
+  justify-content: space-around;
+}
+.row-flex {
+  flex-direction: row;
+}
+.align-item-center {
+  align-items: center;
+}
+.content-bg-color {
+  background-color: #ff6877;
+}
+.content-color {
+  color: #ff6877;
+}
+.content-sh-color {
+  background-color: antiquewhite;
+}
+.color-white {
+  color: white;
+}

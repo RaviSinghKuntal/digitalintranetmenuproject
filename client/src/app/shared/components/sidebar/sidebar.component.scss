@@ -1,0 +1,36 @@
+.mat-icon {
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+.profile-card {
+  text-align: center;
+  padding: 15px 15px 15px 15px;
+  height: 150px;
+}
+.profile-card img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.header h3 {
+  margin: 0px;
+}
+
+.mat-list-item {
+  font-size: 15px;
+}
+
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
+}
+
+::ng-deep .mat-list-item-content {
+  padding: 0 24px !important;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 0 24px 0 !important;
+}
