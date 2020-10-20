@@ -1,0 +1,45 @@
+<mat-nav-list>
+    <div class="profile-card">
+        <img src="../../../../assets/images/profile.jpg" alt="vivek singh">
+        <div class="header">
+            <h3>Vivek Singh</h3>
+            <h4>vivekvikram@gmail.com</h4>
+        </div>
+    </div>
+
+    <mat-divider class="content-color"></mat-divider>
+
+    <h2 matSubheader class="content-sh-color">Manage</h2>
+
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Manage Food
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <a mat-list-item routerLinkActive="list-item-active" routerLink="/menu">Manage Menus</a>
+            <a mat-list-item routerLinkActive="list-item-active" routerLink="/category">Manage Category</a>
+            <a mat-list-item routerLinkActive="list-item-active" routerLink="/item">Manage Items</a>
+            <a mat-list-item routerLinkActive="list-item-active" routerLink="/modifier">Manage Modifiers</a>
+        </mat-expansion-panel>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Manage
+            Users/Customers</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Manage
+            Review/Feedback</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Manage Order</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Manage Location</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Manage Reports</a>
+    </mat-accordion>
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader class="content-sh-color">Tools</h2>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
+        <mat-icon>import_contacts</mat-icon>Contacts
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/posts">
+        <mat-icon>contact_phone</mat-icon>Leads
+    </a>
+
+
+</mat-nav-list>

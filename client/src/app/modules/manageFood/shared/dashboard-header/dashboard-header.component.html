@@ -1,0 +1,11 @@
+<div class="display-flex row-flex">
+    <div class="leftbar display-flex row-flex align-item-center">
+        <img src="../../../../assets/images/menu.png" class="menu-icon">
+        <div class="leftbar-text">{{title}}</div>
+    </div>
+    <div class="rightbar display-flex row-flex align-item-center">
+        <button class="display-flex justify-content-center align-item-center" mat-flat-button (click)='openDialog()'>
+            <mat-icon>add</mat-icon>Add {{title}}
+        </button>
+    </div>
+</div>
