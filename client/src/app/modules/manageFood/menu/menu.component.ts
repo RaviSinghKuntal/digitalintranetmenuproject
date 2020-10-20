@@ -9,7 +9,7 @@ import { DialogBoxService } from '../../services/dialog.service';
 })
 export class MenuComponent implements OnInit {
   title: string = 'Menu';
-  menu: Menu[];
+  menu: any;
 
   constructor(private _menuService: MenuService,private _dialogBox: DialogBoxService) {
   }

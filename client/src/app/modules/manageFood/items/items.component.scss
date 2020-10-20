@@ -1,0 +1,21 @@
+.item-body {
+  display: flex;
+  flex-direction: row;
+
+  .item-sidebar {
+    display: flex;
+    justify-content: left;
+    height: 443px;
+    width: 20%;
+    background-color: antiquewhite;
+    margin-right: 20px;
+  }
+
+  .item-display {
+    display: flex;
+    justify-content: left;
+    height: 443px;
+    width: 80%;
+    background-color: antiquewhite;
+  }
+}
