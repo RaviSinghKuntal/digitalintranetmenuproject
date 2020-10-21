@@ -20,6 +20,9 @@ body {
 .row-flex {
   flex-direction: row;
 }
+.column-flex {
+  flex-direction: column;
+}
 .align-item-center {
   align-items: center;
 }

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements OnInit {
+  links: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   title: string = 'Item';
   constructor() {}
 

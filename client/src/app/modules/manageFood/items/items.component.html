@@ -1,7 +1,90 @@
 <div>
     <app-dashboard-header [title]="title"></app-dashboard-header>
     <div class="item-body">
-        <div class="item-sidebar">sidebar</div>
-        <div class="item-display">display</div>
+        <div class="item-sidebar">
+            <div class="top-sidebar">TOP</div>
+            <div class="bottom-sidebar">
+                <mat-nav-list>
+                    <mat-list-item *ngFor="let link of links">
+                        <a matLine routerLink="/">{{ link }}</a>
+                    </mat-list-item>
+                </mat-nav-list>
+            </div>
+        </div>
+        <div class="item-display">
+            <div class="item-box">
+                <div class="item-content-box column-flex">
+                    <div class="item-header">Menu Name > Category Name > Item Name</div>
+                    <mat-divider></mat-divider>
+                    <div class="item-english display-flex column-flex justify-center">
+                        <div class="item-name">Farmhouse Pizza</div>
+                        <div class="item-desc">Delightful combination of onion, capsicum, tomato & grilled mushroom
+                        </div>
+                    </div>
+                    <div class="item-arabic display-flex column-flex justify-center">
+                        <div class="item-name">بيتزا فارم هاوس</div>
+                        <div class="item-desc">مزيج لذيذ من البصل والفلفل والطماطم والفطر المشوي</div>
+                    </div>
+                    <!-- <div class="item-modifier">
+                        <button mat-stroked-button [matMenuTriggerFor]="animals">Modifiers list<mat-icon>
+                                menu</mat-icon></button>
+                        <mat-menu #animals="matMenu">
+                            <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+                            <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+                            <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+                            <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+                        </mat-menu>
+
+                        <mat-menu #vertebrates="matMenu">
+                            <button mat-menu-item>Birds</button>
+                            <button mat-menu-item>Mammals</button>
+                        </mat-menu>
+
+                        <mat-menu #invertebrates="matMenu">
+                            <button mat-menu-item>Insects</button>
+                            <button mat-menu-item>Molluscs</button>
+                            <button mat-menu-item>Crustaceans</button>
+                            <button mat-menu-item>Corals</button>
+                            <button mat-menu-item>Arachnids</button>
+                            <button mat-menu-item>Velvet worms</button>
+                            <button mat-menu-item>Horseshoe crabs</button>
+                        </mat-menu>
+
+
+                        <mat-menu #amphibians="matMenu">
+                            <button mat-menu-item>Sonoran desert toad</button>
+                            <button mat-menu-item>Western toad</button>
+                            <button mat-menu-item>Arroyo toad</button>
+                            <button mat-menu-item>Yosemite toad</button>
+                        </mat-menu>
+
+                        <mat-menu #reptiles="matMenu">
+                            <button mat-menu-item>Banded Day Gecko</button>
+                            <button mat-menu-item>Banded Gila Monster</button>
+                            <button mat-menu-item>Black Tree Monitor</button>
+                            <button mat-menu-item>Blue Spiny Lizard</button>
+                            <button mat-menu-item disabled>Velociraptor</button>
+                        </mat-menu>
+
+                    </div> -->
+                    <div class="item-info">
+                        <div class="item-detail">
+                            <label><b>Preparation Time :&nbsp;</b></label>
+                            <div>10:00 min</div>
+                        </div>
+                        <div class="item-detail">
+                            <label><b>Calories :&nbsp;</b></label>
+                            <div>500 calories</div>
+                        </div>
+                        <div class="item-status">
+                            <div>Active</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="../../../../assets/images/foodiesfeed_three.jpg">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
