@@ -2,7 +2,23 @@
     <app-dashboard-header [title]="title"></app-dashboard-header>
     <div class="item-body">
         <div class="item-sidebar">
-            <div class="top-sidebar">TOP</div>
+            <div class="top-sidebar">
+                <div class="sidebar-content">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Menu</mat-label>
+                        <mat-select>
+                            <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Category</mat-label>
+                        <mat-select>
+                            <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
             <div class="bottom-sidebar">
                 <mat-nav-list>
                     <mat-list-item *ngFor="let link of links">
@@ -82,7 +98,21 @@
                     </div>
                 </div>
                 <div class="img-box">
-                    <img src="../../../../assets/images/foodiesfeed_three.jpg">
+                    <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+                        <!-- <mdb-carousel-item>
+                            <img class="d-block w-100" src="../../../../assets/images/foodiesfeed_two.jpg"
+                                alt="First slide">
+                        </mdb-carousel-item> -->
+                        <mdb-carousel-item>
+                            <img class="d-block w-100" src="../../../../assets/images/foodiesfeed_three.jpg"
+                                alt="Second slide">
+                        </mdb-carousel-item>
+                        <mdb-carousel-item>
+                            <video class="video-fluid" autoplay loop>
+                                <source src="../../../../assets/images/video.mp4" type="video/mp4" />
+                            </video>
+                        </mdb-carousel-item>
+                    </mdb-carousel>
                 </div>
             </div>
         </div>
