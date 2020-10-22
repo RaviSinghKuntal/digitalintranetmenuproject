@@ -4,6 +4,9 @@ html,
 body {
   height: 100%;
 }
+.btn:focus {
+  outline: none;
+}
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -37,4 +40,15 @@ body {
 }
 .color-white {
   color: white;
+}
+
+.c-input .c-indicator {
+  border: none !important;
+  outline: none !important;
+}
+
+*,
+::after,
+::before {
+  box-sizing: content-box;
 }

@@ -98,21 +98,24 @@
                     </div>
                 </div>
                 <div class="img-box">
-                    <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
-                        <!-- <mdb-carousel-item>
-                            <img class="d-block w-100" src="../../../../assets/images/foodiesfeed_two.jpg"
-                                alt="First slide">
-                        </mdb-carousel-item> -->
-                        <mdb-carousel-item>
-                            <img class="d-block w-100" src="../../../../assets/images/foodiesfeed_three.jpg"
-                                alt="Second slide">
-                        </mdb-carousel-item>
-                        <mdb-carousel-item>
-                            <video class="video-fluid" autoplay loop>
+                    <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" interval="8000"
+                        [keyboard]="true" [pauseOnHover]="true" [wrap]="true" [activeId]="'secondSlide'">
+                        <ng-template ngbSlide>
+                            <div class="picsum-img-wrapper">
+                                <img src="../../../../assets/images/foodiesfeed_three.jpg" alt="Angular Carousel 1">
+                            </div>
+                        </ng-template>
+                        <ng-template ngbSlide>
+                            <div class="picsum-img-wrapper">
+                                <img src="../../../../assets/images/foodiesfeed_two.jpg" alt="Angular Carousel 2">
+                            </div>
+                        </ng-template>
+                        <ng-template ngbSlide class="video-card">
+                            <video class="video-fluid " autoplay loop>
                                 <source src="../../../../assets/images/video.mp4" type="video/mp4" />
                             </video>
-                        </mdb-carousel-item>
-                    </mdb-carousel>
+                        </ng-template>
+                    </ngb-carousel>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -53,7 +54,9 @@ import { ModifierComponent } from '../../modules/manageFood/modifier/modifier.co
     PostsComponent,
   ],
   imports: [
-    CommonModule,HttpClientModule,
+    NgbModule,
+    CommonModule,
+    HttpClientModule,
     RouterModule,
     SharedModule,
     ReactiveFormsModule,

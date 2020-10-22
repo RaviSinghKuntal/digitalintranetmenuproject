@@ -9,18 +9,29 @@ import { ItemsComponent } from '../manageFood/items/items.component';
 })
 export class MenuService {
   menuChanged = new EventEmitter<Menu[]>();
+  SERVER_URL = 'http://localhost:3000/'
   private menu: Menu[] = [];
 
 	constructor(private http: HttpClient) { }
 
   public getMenu() {
-    return this.menu.slice();
+    return this.http.get(`${this.SERVER_URL}menu`).subscribe(
+      (res: any) => {
+        console.log('~~~~~~~~~~~>',res)
+        // this.menu.slice();
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+    // return this.menu.slice();
   }
 
   public onAddMenu(formData) {
-    this.menu.push(new Menu(formData.get('_id'),formData.get('menuName'),formData.get('fileUpload'),formData.get('status')));
-    this.menuChanged.emit(this.menu.slice());
-    return this.http.post(`http://localhost:8080/`, formData).subscribe(
+    console.log(formData)
+    // this.menu.push(new Menu(formData.get('_id'),formData.get('menuName'),formData.get('fileUpload'),formData.get('status')));
+    // this.menuChanged.emit(this.menu.slice());
+    return this.http.post(`${this.SERVER_URL}menu/addMenu`,formData).subscribe(
       (res: any) => {
         this.menu.push(res.dataFromDatabase);
       },

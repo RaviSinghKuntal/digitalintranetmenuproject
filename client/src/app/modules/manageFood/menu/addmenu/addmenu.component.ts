@@ -5,6 +5,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA,MatDialogRef } from "@angular/material/dialog";
 import { Menu } from 'src/app/models/menu.model';
 
+const toBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
+
 @Component({
   selector: 'app-addmenu',
   templateUrl: './addmenu.component.html',
@@ -50,16 +57,18 @@ export class AddmenuComponent implements OnInit {
     }
   }
 
-  onSaveMenu() {
-    let formData = new FormData();
-    formData.append('_id', this.menuFormControl.get('_id').value);
-    formData.append('menuName', this.menuFormControl.get('menuName').value);
-    formData.append('fileUpload', this.menuFormControl.get('fileUpload').value);
-    formData.append('status', this.menuFormControl.get('status').value);
+ async onSaveMenu() {
+     const imageData = await toBase64(this.menuFormControl.get('fileUpload').value);
+    let menuData = {
+      // _id:this.menuFormControl.get('_id').value,
+      menuName:this.menuFormControl.get('menuName').value,
+      fileUpload: imageData,
+      status:'Active',
+    }
     if (this.addMode) {
-      this._menuService.onAddMenu(formData);
+      this._menuService.onAddMenu(menuData);
     }else{
-      this._menuService.onEditMenu(formData)
+      this._menuService.onEditMenu(menuData)
     }
   }
 

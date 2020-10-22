@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { DefaultModule } from './layout/default/default.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -14,6 +15,7 @@ import { DefaultModule } from './layout/default/default.module';
     BrowserAnimationsModule,
     MatButtonModule,
     DefaultModule,
+    NgbModule,
   ],
   bootstrap: [AppComponent],
 })
