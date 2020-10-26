@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { title }  from "../../../shared/constant";
 
 @Component({
   selector: 'app-modifier',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modifier.component.css'],
 })
 export class ModifierComponent implements OnInit {
-  title: string = 'Modifier';
+  title: string = title.Modifier;
   constructor() {}
 
   ngOnInit(): void {}

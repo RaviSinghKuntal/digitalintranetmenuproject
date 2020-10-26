@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { title }  from "../../../shared/constant";
 import { MenuService } from '../../services/menu.service';
 import { Menu } from '../../../models/menu.model';
 import { DialogBoxService } from '../../services/dialog.service';
@@ -9,7 +10,7 @@ import { DialogBoxService } from '../../services/dialog.service';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit {
-  title: string = 'Category';
+  title: string = title.Category;
   menu: any;
 
   constructor(private _menuService: MenuService,private _dialogBox: DialogBoxService) {
