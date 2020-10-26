@@ -25,6 +25,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTreeModule } from '@angular/material/tree';
+
 
 import { AddcategoryComponent } from '../../modules/manageFood/category/addcategory/addcategory.component';
 import { AdditemComponent } from '../../modules/manageFood/items/additem/additem.component';
@@ -79,6 +81,7 @@ import { ModifierComponent } from '../../modules/manageFood/modifier/modifier.co
     MatSortModule,
     MatTableModule,
     MatToolbarModule,
+    MatTreeModule
   ],
   providers: [],
   entryComponents:[AddmenuComponent]

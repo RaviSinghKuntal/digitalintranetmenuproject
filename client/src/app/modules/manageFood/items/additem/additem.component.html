@@ -1,0 +1,88 @@
+<div class="dialog-box">
+    <div>
+        <h2 class="content-color" mat-dialog-title>Add Menu</h2>
+        <mat-divider></mat-divider>
+    </div>
+    <div class="wrapper display-flex justify-space-around ">
+        <div class="display-flex column-flex left-wrapper">
+            <div class="display-flex row-flex">
+                <mat-form-field appearance="standard">
+                    <mat-label>Menu</mat-label>
+                    <mat-select formControlName="menu">
+                        <mat-option value="option 1">option 1</mat-option>
+                        <mat-option value="option 2">option 2</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="category">
+                        <mat-option value="option">Option</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="display-flex row-flex">
+                <mat-form-field appearance="standard">
+                    <mat-label>Item Name</mat-label>
+                    <input matInput formControlName="itemName">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>اسم العنصر</mat-label>
+                    <input matInput formControlName="itemNameArabic">
+                </mat-form-field>
+            </div>
+            <div class="display-flex row-flex">
+                <mat-form-field appearance="standard">
+                    <mat-label>Item Description</mat-label>
+                    <textarea matInput formControlName="itemDesc"></textarea>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>وصف السلعة</mat-label>
+                    <textarea matInput formControlName="itemDescArabic"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="display-flex row-flex">
+                <mat-form-field class="calories-suffix-fit" appearance="standard">
+                    <mat-label>Calories</mat-label>
+                    <input matInput min="0" type="number" formControlName="calories">
+                    <span matSuffix>cal</span>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Preparation Time</mat-label>
+                    <input matInput type="time">
+                </mat-form-field>
+            </div>
+            <div class="display-flex row-flex">
+                <mat-form-field appearance="standard">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option value="active">Active</mat-option>
+                        <mat-option value="inactive">Inactive</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Preparation Time</mat-label>
+                    <input matInput type="time">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="right-wrapper display-flex">
+            <div class="img-container">
+
+            </div>
+            <div class="auto-flex justify-center display-flex">
+                <button mat-button class="upload-button btn">
+                    <label class="custom-file-upload">
+                        <mat-icon>publish</mat-icon>
+                        <input type="file" (change)="onFileChange($event)" accept="image/* video/*" multiple=true />
+                        Upload Image and Video
+                    </label>
+                </button>
+            </div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-dialog-actions align="end">
+        <button class="content-bg-color color-white btn" mat-flat-button mat-dialog-close>Cancel</button>
+        <button class="content-bg-color color-white btn" mat-flat-button [mat-dialog-close]="true">Save</button>
+    </mat-dialog-actions>
+</div>
