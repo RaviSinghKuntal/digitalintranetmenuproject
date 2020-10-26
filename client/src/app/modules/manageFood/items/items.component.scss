@@ -145,3 +145,7 @@ ngb-carousel,
 ::ng-deep .carousel-inner {
   border-radius: 10px !important;
 }
+
+::ng-deep .carousel-item.active {
+  display: flex !important;
+}

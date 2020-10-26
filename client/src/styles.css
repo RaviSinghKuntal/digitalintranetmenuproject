@@ -52,3 +52,7 @@ body {
 ::before {
   box-sizing: content-box;
 }
+
+button {
+  outline: none;
+}
