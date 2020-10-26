@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { title }  from "../../../shared/constant";
-import { MenuService } from '../../services/menu.service';
 import { Menu } from '../../../models/menu.model';
+
+import { MenuService } from '../../services/menu.service';
 import { DialogBoxService } from '../../services/dialog.service';
 @Component({
   selector: 'app-menu',

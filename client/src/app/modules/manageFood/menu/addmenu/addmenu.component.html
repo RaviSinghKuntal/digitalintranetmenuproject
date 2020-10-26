@@ -3,20 +3,19 @@
         <h2 class="content-color" mat-dialog-title>Add Menu</h2>
         <mat-divider></mat-divider>
     </div>
-    <div class="wrapper display-flex justify-space-around align-item-center">
-        <div>
-            <div [formGroup]="menuFormControl">
-                <mat-form-field appearance="standard">
-                    <mat-label>Menu</mat-label>
-                    <input matInput id="menuName" formControlName="menuName">
-                </mat-form-field>
-                <br><br>
-                <section class="example-section">
-                    Status :<mat-slide-toggle class="example-margin" [color]="color" [checked]="checked"
-                        formControlName="status">
-                    </mat-slide-toggle>
-                </section>
-            </div>
+    <div class="wrapper display-flex justify-space-around ">
+        <div [formGroup]="menuFormControl" class="display-flex column-flex">
+            <mat-form-field appearance="standard">
+                <mat-label>Menu</mat-label>
+                <input matInput id="menuName" formControlName="menuName">
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option value="active">Active</mat-option>
+                    <mat-option value="inactive">Inactive</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
         <div class="right-section align-item-center display-flex">
             <div class="upload-img justify-center" *ngIf="this.menuFormControl.value.fileUpload.name">

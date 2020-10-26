@@ -5,4 +5,9 @@ const title:any = {
     Modifier:"Modifier"
 }
 
-export { title }
+const status:any = {
+    Active:"active",
+    Inactive:"Inactive"
+}
+
+export { title,status }

@@ -29,6 +29,9 @@ body {
 .align-item-center {
   align-items: center;
 }
+.align-item-flex-start {
+  align-self: flex-start;
+}
 .content-bg-color {
   background-color: #ff6877;
 }
