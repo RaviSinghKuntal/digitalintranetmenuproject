@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Menu } from '../../models/menu.model';
 import { EventEmitter } from '@angular/core';
 import { HttpClient} from  '@angular/common/http';  
-import { ItemsComponent } from '../manageFood/items/items.component';
 
 @Injectable({
   providedIn: 'root',

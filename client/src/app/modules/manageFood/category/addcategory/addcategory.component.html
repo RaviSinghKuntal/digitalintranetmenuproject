@@ -9,17 +9,14 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Menu</mat-label>
                     <input matInput id="menuName" formControlName="menuName">
-                    <!-- <mat-error
-                        *ngIf="menuFormControl.controls.menuName.touched && menuFormControl.controls.menuName.errors.required">
-                        Menu Name is required
-                    </mat-error> -->
                 </mat-form-field>
-                <br><br>
-                <section class="example-section">
-                    Status :<mat-slide-toggle class="example-margin" [color]="color" [checked]="checked"
-                        formControlName="status">
-                    </mat-slide-toggle>
-                </section>
+                <mat-form-field appearance="standard">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option value="active">Active</mat-option>
+                        <mat-option value="inactive">Inactive</mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
         </div>
         <div class="right-section align-item-center display-flex">
