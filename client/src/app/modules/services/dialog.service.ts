@@ -11,7 +11,7 @@ export class DialogBoxService {
   constructor(public dialog: MatDialog) {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(AdditemComponent);
+    const dialogRef = this.dialog.open(AddmenuComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
