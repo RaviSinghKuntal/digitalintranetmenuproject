@@ -31,6 +31,8 @@
 
 .upload-button {
   padding: unset;
+  height: fit-content;
+  width: fit-content;
   input[type="file"] {
     display: none;
   }
@@ -87,5 +89,35 @@ label {
 }
 
 .img-container {
-  flex: 2;
+  flex: 3;
+  background: whitesmoke;
+  border: 1px #ff6877 dotted;
+  margin-top: 20px;
+}
+
+ol {
+  padding-inline-start: 15px;
+  .file-name {
+    color: #ff6877;
+    list-style: none;
+    font-size: 17px;
+  }
+}
+
+.prep-time {
+  margin: 0px 20px;
+}
+.prep-time-label {
+  width: 180px;
+  color: #858585;
+}
+.hrs-min {
+  height: 60px;
+  margin: -15px 0px;
+  display: flex;
+  flex-direction: row;
+  mat-form-field {
+    width: 85px;
+    margin: 0px 2.5px;
+  }
 }

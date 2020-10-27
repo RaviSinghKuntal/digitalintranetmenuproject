@@ -4,7 +4,7 @@
         <mat-divider></mat-divider>
     </div>
     <div class="wrapper display-flex justify-space-around ">
-        <div class="display-flex column-flex left-wrapper">
+        <div class="display-flex column-flex left-wrapper" [formGroup]="itemFormControl">
             <div class="display-flex row-flex">
                 <mat-form-field appearance="standard">
                     <mat-label>Menu</mat-label>
@@ -46,10 +46,23 @@
                     <input matInput min="0" type="number" formControlName="calories">
                     <span matSuffix>cal</span>
                 </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Preparation Time</mat-label>
-                    <input matInput type="time">
-                </mat-form-field>
+                <div class="prep-time">
+                    <div class="prep-time-label">
+                        <mat-label>Preparation Time</mat-label>
+                    </div>
+                    <div class="hrs-min">
+                        <mat-form-field appearance="standard">
+                            <mat-label>hh</mat-label>
+                            <input matInput type="number" id="hours" name="hours" min="0" max="12"
+                                formControlName="hours">
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>mm</mat-label>
+                            <input matInput type="number" id="hours" name="hours" min="0" max="59"
+                                formControlName="hours">
+                        </mat-form-field>
+                    </div>
+                </div>
             </div>
             <div class="display-flex row-flex">
                 <mat-form-field appearance="standard">
@@ -66,10 +79,12 @@
             </div>
         </div>
         <div class="right-wrapper display-flex">
-            <div class="img-container">
-
+            <div class="img-container display-flex column-flex justify-flex-end">
+                <ol *ngFor="let items of filesName">
+                    <li class="file-name">{{ items.name }}</li>
+                </ol>
             </div>
-            <div class="auto-flex justify-center display-flex">
+            <div class="auto-flex align-item-center display-flex">
                 <button mat-button class="upload-button btn">
                     <label class="custom-file-upload">
                         <mat-icon>publish</mat-icon>
@@ -83,6 +98,7 @@
     <mat-divider></mat-divider>
     <mat-dialog-actions align="end">
         <button class="content-bg-color color-white btn" mat-flat-button mat-dialog-close>Cancel</button>
-        <button class="content-bg-color color-white btn" mat-flat-button [mat-dialog-close]="true">Save</button>
+        <button class="content-bg-color color-white btn" mat-flat-button [mat-dialog-close]="true"
+            (click)="onSaveMenu()">Save</button>
     </mat-dialog-actions>
 </div>
