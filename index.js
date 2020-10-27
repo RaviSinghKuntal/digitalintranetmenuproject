@@ -12,6 +12,7 @@ import { url } from './config/mongodb.config';
 import bodyParser from "body-parser";
 import signup from './api/signup/signup';
 import login from './api/signup/signup';
+import upload from './api/uploadImages/uploadImageRoutes';
 
 const app = express();
 const port = 3000;
@@ -30,6 +31,7 @@ app.use('/modifiers', modifiers);
 app.use('/user', user);
 app.use('/location', location);
 app.use('/order', order);
+app.use('/upload', upload);
 
 // mongoose.connect(url);
 
