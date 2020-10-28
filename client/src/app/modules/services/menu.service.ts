@@ -14,16 +14,7 @@ export class MenuService {
 	constructor(private http: HttpClient) { }
 
   public getMenu() {
-    // return this.http.get(`${this.SERVER_URL}menu`).subscribe(
-    //   (res: any) => {
-    //     console.log('~~~~~~~~~~~>',res)
-    //     // this.menu.slice();
-    //   },
-    //   (err: any) => {
-    //     console.log(err);
-    //   }
-    // );
-    // return this.menu.slice();
+    return this.http.get(`${this.SERVER_URL}menu`);
   }
 
   public onAddImage(formData,menuData) {
@@ -39,10 +30,10 @@ export class MenuService {
   }
 
   public onAddMenu(menuData){
-     console.log("onAddMenu -> menuData", menuData)
      return this.http.post(`${this.SERVER_URL}menu/addMenu`,menuData).subscribe(
         (res: any) => {
-          this.menu.push(res.dataFromDatabase);
+          this.menu.push(res);
+          this.menuChanged.emit(this.menu.slice());
         },
         (err: any) => {
           console.log(err);
@@ -67,8 +58,8 @@ export class MenuService {
 
   public onEditMenu(formData){
     let menuIndex = this.menu.findIndex((menu => menu._id === formData.get('_id')));
-    this.menu[menuIndex].menuName = formData.get('menuName')
-    this.menu[menuIndex].fileUpload = formData.get('fileUpload')
+    this.menu[menuIndex].menu_name = formData.get('menu_name')
+    this.menu[menuIndex].image = formData.get('image')
     this.menu[menuIndex].status = formData.get('status')
     this.menuChanged.emit(this.menu.slice())
   }

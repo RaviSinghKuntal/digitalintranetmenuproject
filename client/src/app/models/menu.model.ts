@@ -1,8 +1,9 @@
 export class Menu {
-  constructor(public _id: number,public menuName: string,public fileUpload: string, public status: string) {
+  constructor(public _id:number,public menu_name: string,public arabic_name:string,public image: string, public status: string) {
     this._id = _id;
-    this.menuName = menuName;
-    this.fileUpload = fileUpload;
+    this.menu_name = menu_name;
+    this.arabic_name = arabic_name;
+    this.image = image;
     this.status = status;
   }
 }
