@@ -16,18 +16,9 @@ export class MenuComponent implements OnInit {
   constructor(private _menuService: MenuService,private _dialogBox: DialogBoxService) {
   }
 
-  ngOnInit(): void {
-    this.menu = this._menuService.getMenu().subscribe(
-      (data:any) => {
-        this.menu = data;
-        return this.menu;
-      },
-      (err:any) => {
-        console.log(err);
-      }
-    );
+  async ngOnInit() {
+    this.menu = await this._menuService.getMenu();
     this._menuService.menuChanged.subscribe((menu: Menu) => {
-      this.menu.push(menu[0]);
       console.log(menu);
     });
   }

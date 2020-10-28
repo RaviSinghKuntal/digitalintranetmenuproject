@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Menu } from '../../models/menu.model';
 import { EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders} from  '@angular/common/http';  
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -9,12 +11,23 @@ import { HttpClient, HttpHeaders} from  '@angular/common/http';
 export class MenuService {
   menuChanged = new EventEmitter<Menu[]>();
   SERVER_URL = 'http://localhost:3000/'
-  private menu: Menu[] = [];
+  private menu: Menu[]=[];
 
 	constructor(private http: HttpClient) { }
 
   public getMenu() {
-    return this.http.get(`${this.SERVER_URL}menu`);
+    return new Promise((resolve, reject)=>{
+      this.http.get(`${this.SERVER_URL}menu`).subscribe(
+        (data:any) =>  {
+          this.menu = data;
+          return resolve(data);
+        },
+        (err:any) => {
+          reject(err)
+          console.log(err);
+        }
+      )
+    })
   }
 
   public onAddImage(formData,menuData) {
