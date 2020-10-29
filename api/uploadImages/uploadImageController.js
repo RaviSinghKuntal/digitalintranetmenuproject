@@ -1,5 +1,6 @@
 import { successHandler, errorHandler } from "../../util/responseHandler";
 import { get, isEmpty } from "lodash";
+import mongoose from 'mongoose';
 import Grid from 'gridfs';
 import { fileSavedInDatabase } from "../../helpers/common";
 // const { url: mongoUrl } = mongodbConfig;
@@ -15,11 +16,15 @@ connection.on('connected', () => {
 export default {
 
   getImage: (req, res) => {
-    var readstream = gfs.createReadStream({filename: req.params.filename}); 
-    readstream.on("error", function(err){
-        res.send("No image found with that title"); 
-    });
-    readstream.pipe(res);
+    try {
+      var readstream = gfs.createReadStream({filename: req.params.filename}); 
+      readstream.on("error", function(err){
+          res.send("No image found with that title"); 
+      });
+      readstream.pipe(res);
+    } catch(err) {
+      errorHandler(res, err);
+    }
   },
   upload: (req, res) => {
     try {
