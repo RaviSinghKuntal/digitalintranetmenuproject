@@ -1,9 +1,26 @@
 import { successHandler, errorHandler } from "../../util/responseHandler";
-import digitalIntranetQueryGenerator from "../../util/digitalIntranetQueryGenerator";
 import { get, isEmpty } from "lodash";
+import Grid from 'gridfs';
 import { fileSavedInDatabase } from "../../helpers/common";
+// const { url: mongoUrl } = mongodbConfig;
+
+// mongoose.connect(mongoUrl);
+
+let gfs;
+const { connection } = mongoose;
+connection.on('connected', () => {
+  gfs = Grid(connection.db, mongoose.mongo);
+});
 
 export default {
+
+  getImage: (req, res) => {
+    var readstream = gfs.createReadStream({filename: req.params.filename}); 
+    readstream.on("error", function(err){
+        res.send("No image found with that title"); 
+    });
+    readstream.pipe(res);
+  },
   upload: (req, res) => {
     try {
       console.log({ res: req.file });
