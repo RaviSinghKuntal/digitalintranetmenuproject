@@ -79,7 +79,9 @@ export class MenuService {
   
       this.http.delete(`${this.SERVER_URL}menu/deleteMenu`, httpOptions).subscribe(
         (res: any) => {
-          console.log({ res })
+          let index = this.menu.findIndex((menu)  => (menu._id === menuId));
+          this.menu.splice(index, 1)
+          this.menuChanged.emit(this.menu.slice())
       },
       (err: any) => {
         console.log({ err })
