@@ -5,13 +5,6 @@ import { MenuService } from '../../../services/menu.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 
-const toBase64 = file => new Promise((resolve, reject) => {
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => resolve(reader.result);
-  reader.onerror = error => reject(error);
-});
-
 @Component({
   selector: 'app-addmenu',
   templateUrl: './addmenu.component.html',
@@ -27,7 +20,6 @@ export class AddmenuComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data:any) {
 
     this.menuFormControl = this.fb.group({
-      _id: Date.now(),
       menuName: ['', Validators.required],
       fileUpload: ['', [Validators.required]],
       status: [status.Active],
@@ -57,18 +49,18 @@ export class AddmenuComponent implements OnInit {
     }
   }
 
- async onSaveMenu() {
-    const imageData = await toBase64(this.menuFormControl.get('fileUpload').value);
-    let menuData = {
-      // _id:this.menuFormControl.get('_id').value,
-      menuName:this.menuFormControl.get('menuName').value,
-      fileUpload: imageData,
-      status:this.menuFormControl.get('status').value,
+  onSaveMenu() {
+    let formData = new FormData();
+    formData.append('file',this.menuFormControl.get('fileUpload').value)
+    let menuData:any = {
+      english_name:this.menuFormControl.get('menuName').value,
+      arabic_name:this.menuFormControl.get('menuName').value,
+      status:this.menuFormControl.get('status').value
     }
     if (this.addMode) {
-      this._menuService.onAddMenu(menuData);
+      this._menuService.onAddImage(formData,menuData);
     }else{
-      this._menuService.onEditMenu(menuData)
+      this._menuService.onEditMenu(formData)
     }
   }
 

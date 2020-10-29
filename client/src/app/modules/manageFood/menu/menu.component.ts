@@ -11,15 +11,15 @@ import { DialogBoxService } from '../../services/dialog.service';
 })
 export class MenuComponent implements OnInit {
   title: string = title.Menu;
-  menu: any;
+  menu:any;
 
   constructor(private _menuService: MenuService,private _dialogBox: DialogBoxService) {
   }
 
-  ngOnInit(): void {
-    this.menu = this._menuService.getMenu();
-    this._menuService.menuChanged.subscribe((menu: Menu[]) => {
-      this.menu = menu;
+  async ngOnInit() {
+    this.menu = await this._menuService.getMenu();
+    this._menuService.menuChanged.subscribe((menu: Menu) => {
+      console.log(menu);
     });
   }
 
