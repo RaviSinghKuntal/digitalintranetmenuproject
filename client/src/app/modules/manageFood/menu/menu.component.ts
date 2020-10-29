@@ -4,6 +4,7 @@ import { Menu } from '../../../models/menu.model';
 
 import { MenuService } from '../../services/menu.service';
 import { DialogBoxService } from '../../services/dialog.service';
+import { SocketioService } from '../../services/socketio.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -13,10 +14,11 @@ export class MenuComponent implements OnInit {
   title: string = title.Menu;
   menu:any;
 
-  constructor(private _menuService: MenuService,private _dialogBox: DialogBoxService) {
+  constructor(private _menuService: MenuService,private _dialogBox: DialogBoxService,private _socketService: SocketioService) {
   }
 
   async ngOnInit() {
+    this._socketService.setupSocketConnection();
     this.menu = await this._menuService.getMenu();
     this._menuService.menuChanged.subscribe((menu: Menu) => {
       console.log(menu);

@@ -23,36 +23,36 @@ export default {
   },
   upload: (req, res) => {
     try {
-      console.log({ res: req.file });
-      const file = get(req, 'file', {});
+      const file = get(req, "file", {});
+      console.log("file", file);
       // Check if file is empty
       if (!isEmpty(file)) {
-        const filePath = get(file, 'path', null);
-        const filename = get(file, 'filename', '');
+        const filePath = get(file, "path", null);
+        const filename = get(file, "filename", "");
         const filedata = {
           filename,
           filePath,
         };
         // Save the file in the DB
         fileSavedInDatabase(filedata)
-        .then((savedFileInfo) => {
-          console.log({ savedFileInfo });
-          // Get the saved file information after save
-          const fileInfo = {
-            originalName: get(file, 'originalname', ''),
-            key: get(savedFileInfo, '_id', ''),
-            filename: get(file, 'filename', ''),
-          };
-          // Return the file information to client
-          console.log({ fileInfo });
-          successHandler(res, fileInfo);
-        })
-        .catch((err) => {
-          errorHandler(res, `File upload failed: ${err}`);
-        });
+          .then((savedFileInfo) => {
+            console.log({ savedFileInfo });
+            // Get the saved file information after save
+            const fileInfo = {
+              originalName: get(file, "originalname", ""),
+              key: get(savedFileInfo, "_id", ""),
+              filename: get(file, "filename", ""),
+            };
+            // Return the file information to client
+            console.log({ fileInfo });
+            successHandler(res, fileInfo);
+          })
+          .catch((err) => {
+            errorHandler(res, `File upload failed: ${err}`);
+          });
       }
-    } catch(err) {
+    } catch (err) {
       console.error({ err });
     }
-      }
-}
+  },
+};

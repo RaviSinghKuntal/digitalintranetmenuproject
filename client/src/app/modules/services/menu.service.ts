@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Menu } from '../../models/menu.model';
 import { EventEmitter } from '@angular/core';
-import { HttpClient, HttpHeaders} from  '@angular/common/http';  
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { HttpClient} from  '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
