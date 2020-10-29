@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
-import io from "./socketIOServer";
+import http from "http";
+// import io from "./socketIOServer";
 import menu from "./api/menu/menuRoute";
 import category from "./api/category/categoryRoute";
 import item from "./api/item/itemRoute";
@@ -17,23 +18,32 @@ import upload from "./api/uploadImages/uploadImageRoutes";
 import indexPage from "./api/indexPage/index";
 
 const app = express();
+const server = http.createServer(app);
+var io = require("socket.io")(server);
 const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.text());
 
+io.on("connection", (socket) => {
+  socket.on("my message", (data) => {
+    console.log("data", data);
+  });
+});
 console.log({ url });
 
 app.use(cors());
-app.use((req, res, next) => {
-  req.io = io;
-  next();
-});
-io.use((socket, next) => {
-  const handshake = socket.request;
-  console.log("io handshake", socket.id);
-  socket.on("middleware", function () {});
-  next();
-});
+// app.use((req, res, next) => {
+//   req.io = io;
+//   next();
+// });
+
+// io.use((socket, next) => {
+//   const handshake = socket.request;
+//   console.log("io handshake", socket.id);
+//   socket.on("middleware", function () {});
+//   next();
+// });
 
 app.use("/", indexPage);
 app.use("/signup", signup);
@@ -51,6 +61,6 @@ app.use("/upload", upload);
 
 mongoose.connect(url);
 
-app.listen(port, () =>
+server.listen(port, () =>
   console.log(`Digital intranet Menu App listening at http://localhost:${port}`)
 );

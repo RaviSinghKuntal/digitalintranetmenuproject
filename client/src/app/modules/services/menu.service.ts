@@ -52,11 +52,15 @@ export class MenuService {
       );
   }
 
-  public removeMenu(menuId:number) {
-    let index = this.menu.map((menu)  =>  { 
-      return menu._id
-    }).indexOf(menuId);
-    this.menu.splice(index,1)
+  public removeMenu(menuId:any) {
+    console.log({ menuId });
+    this.http.delete(`${this.SERVER_URL}menu/deleteMenu`, menuId).subscribe(
+      (res:any)=>{
+        console.log({res})
+      },
+      (err:any)=>{
+        console.log({err})
+      })
     this.menuChanged.emit(this.menu.slice())
   }
 

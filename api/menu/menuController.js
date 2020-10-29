@@ -82,7 +82,6 @@ export default {
     console.log("Inside delete::::::::::");
     let menuIds = get(req, "body", {});
     console.log({ menuIds });
-    let deleteQuery = {};
     let message = "";
     if (isString(menuIds)) {
       menuIds = JSON.parse(menuIds);

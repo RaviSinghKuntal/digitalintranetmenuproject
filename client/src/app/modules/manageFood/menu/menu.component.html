@@ -12,7 +12,7 @@
                     <div *ngIf="items?.status === 'active'" class="status-div color-white active">Active</div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-icon-button>
+                    <button mat-icon-button (click)="onRemoveMenu(items._id)">
                         <mat-icon>delete</mat-icon>
                     </button>
                     <button mat-icon-button class="editbutton">
