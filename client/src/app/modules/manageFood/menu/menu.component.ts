@@ -18,11 +18,11 @@ export class MenuComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this._socketService.setupSocketConnection();
     this.menu = await this._menuService.getMenu();
     this._menuService.menuChanged.subscribe((menu: Menu) => {
       console.log(menu);
     });
+    this._socketService.setupSocketConnection();
   }
 
   onRemoveMenu(menuId:number) {
