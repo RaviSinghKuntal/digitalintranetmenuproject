@@ -29,20 +29,23 @@ export class MenuService {
   }
 
   public onAddImage(formData,menuData) {
-    let image:string;
-    this.http.post(`${this.SERVER_URL}upload`, formData).subscribe((res:any)=>{
-      image = res.key;
-      let menuDataobj = {...menuData, image}
-      this.onAddMenu(menuDataobj);
-    },
-    (err:any)=>{
-      console.log(err)
-    })
+    this.http.post(`${this.SERVER_URL}upload`, formData)
+    .subscribe(
+      (res:any)=>{
+        let imageKey:string = res.key;
+        let menuDataobj = {...menuData, imageKey}
+        this.onAddMenu(menuDataobj);
+      },
+      (err:any)=>{
+        console.log(err)
+      });
   }
 
-  public onAddMenu(menuData){
+  public onAddMenu(menuData:object){
      return this.http.post(`${this.SERVER_URL}menu/addMenu`,menuData).subscribe(
         (res: any) => {
+          let fileData = this.getImage(res._id)
+          console.log(res);
           this.menu.push(res);
           this.menuChanged.emit(this.menu.slice());
         },
@@ -52,9 +55,20 @@ export class MenuService {
       );
   }
 
+  public getImage(imageId:any){
+    return this.http.get(`${this.SERVER_URL}upload/${imageId}`)
+    .subscribe(
+      (res:any) =>{
+        return res;
+      },
+      (err:any)=>{
+        console.log(err);
+      });
+  }
+
   public removeMenu(menuId:any) {
     console.log({ menuId });
-    this.http.delete(`${this.SERVER_URL}menu/deleteMenu`, menuId).subscribe(
+    this.http.delete(`${this.SERVER_URL}menu/deleteMenu`, {params: {body: menuId}}).subscribe(
       (res:any)=>{
         console.log({res})
       },
