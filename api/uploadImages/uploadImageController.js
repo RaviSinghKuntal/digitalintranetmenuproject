@@ -17,7 +17,7 @@ export default {
 
   getImage: (req, res) => {
     try {
-      var readstream = gfs.createReadStream({filename: req.params.filename}); 
+      var readstream = gfs.createReadStream({_id: req.params.id}); 
       readstream.on("error", function(err){
           res.send("No image found with that title"); 
       });

@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
   },
 });
 
-router.get("/:filename", uploadImageController.getImage);
+router.get("/:id", uploadImageController.getImage);
 
 router.post(
   "/",
