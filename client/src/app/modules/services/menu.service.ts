@@ -32,38 +32,25 @@ export class MenuService {
     this.http.post(`${this.SERVER_URL}upload`, formData)
     .subscribe(
       (res:any)=>{
-        let imageKey:string = res.key;
-        let menuDataobj = {...menuData, imageKey}
-        this.onAddMenu(menuDataobj);
+        menuData["image"] = `${this.SERVER_URL}upload/${res.key}`;
+        this.onAddMenu(menuData);
       },
       (err:any)=>{
         console.log(err)
       });
   }
 
-  public onAddMenu(menuData:object){
+  public onAddMenu(menuData:any){
      return this.http.post(`${this.SERVER_URL}menu/addMenu`,menuData).subscribe(
         (res: any) => {
-          let fileData = this.getImage(res._id)
-          console.log(res);
-          this.menu.push(res);
+          menuData["_id"] = res._id;
+          this.menu.push(menuData);
           this.menuChanged.emit(this.menu.slice());
         },
         (err: any) => {
           console.log(err);
         }
       );
-  }
-
-  public getImage(imageId:any){
-    return this.http.get(`${this.SERVER_URL}upload/${imageId}`)
-    .subscribe(
-      (res:any) =>{
-        return res;
-      },
-      (err:any)=>{
-        console.log(err);
-      });
   }
 
   public removeMenu(menuId:any) {

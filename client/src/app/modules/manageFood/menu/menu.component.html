@@ -3,8 +3,7 @@
     <div class="menu-wrapper display-flex row-flex tile">
         <div *ngFor="let items of menu">
             <mat-card class="menu-card">
-                <img mat-card-image src='../../../../assets/images/{{items.fileUpload ? items.fileUpload:"recipe.jpg"}}'
-                    alt={{items.image}}>
+                <img mat-card-image src='{{items.image ? items.image:"recipe.jpg"}}' alt={{items.image}}>
                 <mat-card-content>
                     <div class="item-name">{{ items.english_name }}</div>
                     <div *ngIf="items?.status === 'inactive'" class="status-div color-white content-bg-color">Inactive
