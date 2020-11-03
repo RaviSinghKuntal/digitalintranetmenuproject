@@ -125,18 +125,16 @@ export class MenuService {
     }
     this.http.put(`${this.SERVER_URL}/menu/updateMenu`, updateMenuData).subscribe(
         (res:any) => {
-          console.log(res);
+          let menuIndex = this.menu.findIndex(menu => menu._id === menuData._id);
+          this.menu[menuIndex].english_name = menuData.english_name,
+          this.menu[menuIndex].image = menuData.image,
+          this.menu[menuIndex].status = menuData.status,
+          this.menuChanged.emit(this.menu.slice())   
         },
         (err:any) => {
           console.log(err);
         }
-        // this.menuChanged.emit(this.menu.slice())
       );
-    // let menuIndex = this.menu.findIndex((menu => menu._id === formData.get('_id')));
-    // this.menu[menuIndex].menu_name = formData.get('menu_name')
-    // this.menu[menuIndex].image = formData.get('image')
-    // this.menu[menuIndex].status = formData.get('status')
-    // this.menuChanged.emit(this.menu.slice())
   }
 
   // onFileChange(file: any) {
