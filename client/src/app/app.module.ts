@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DefaultModule } from './layout/default/default.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SocketioService } from './modules/services/socketio.service';
+import { ApiService } from './modules/services/api.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -18,7 +19,7 @@ import { SocketioService } from './modules/services/socketio.service';
     DefaultModule,
     NgbModule,
   ],
-  providers: [SocketioService],
+  providers: [SocketioService,ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

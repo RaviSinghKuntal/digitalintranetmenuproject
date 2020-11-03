@@ -7,7 +7,7 @@
         <div [formGroup]="menuFormControl" class="display-flex column-flex">
             <mat-form-field appearance="standard">
                 <mat-label>Menu</mat-label>
-                <input matInput id="menuName" formControlName="menuName">
+                <input matInput id="english_name" formControlName="english_name">
             </mat-form-field>
             <mat-form-field appearance="standard">
                 <mat-label>Status</mat-label>
@@ -18,12 +18,11 @@
             </mat-form-field>
         </div>
         <div class="right-section align-item-center display-flex">
-            <div class="upload-img justify-center" *ngIf="this.menuFormControl.value.fileUpload.name">
-                <img class="recipe-img"
-                    src="../../../../../assets/images/{{this.menuFormControl.value.fileUpload.name}}">
+            <div class="upload-img justify-center" *ngIf="this.menuFormControl.value.image">
+                <img class="recipe-img" [src]="imageSrc">
             </div>
             <div class="upload-img align-item-center justify-center display-flex add_a_photo"
-                *ngIf="!this.menuFormControl.value.fileUpload.name">
+                *ngIf="!this.menuFormControl.value.image">
                 <img src="../../../../../assets/images/add_a_photo.png">
             </div>
             <button mat-button class="upload-button btn">

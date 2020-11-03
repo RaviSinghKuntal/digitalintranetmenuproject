@@ -13,6 +13,7 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 export class AddmenuComponent implements OnInit {
   menuFormControl: FormGroup;
   color: ThemePalette = 'accent';
+  imageSrc:any;
   addMode: boolean = true;
   editMenuData:any;
 
@@ -20,19 +21,19 @@ export class AddmenuComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data:any) {
 
     this.menuFormControl = this.fb.group({
-      menuName: ['', Validators.required],
-      fileUpload: ['', [Validators.required]],
+      english_name: ['', Validators.required],
+      image: ['', [Validators.required]],
       status: [status.Active],
     });
 
     this.editMenuData = {...data};
     if(this.editMenuData.editMenu){
       this.addMode = false;
-      this.menuFormControl.patchValue({ 
-        _id: this.editMenuData._id,
-        menuName: this.editMenuData.menuName,
-        fileUpload: this.editMenuData.fileUpload,
-        status: this.editMenuData.status 
+      this.imageSrc = `http://localhost:3000/upload/${this.editMenuData.image}`;
+      this.menuFormControl.patchValue({
+        english_name: this.editMenuData.english_name,
+        image: this.editMenuData.image,
+        status: this.editMenuData.status
       })
     }
   }
@@ -41,26 +42,29 @@ export class AddmenuComponent implements OnInit {
 
   onFileChange(event: any) {
     if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
       const reader = new FileReader();
       reader.onload = () => {
-        this.menuFormControl.get('fileUpload').setValue(event.target.files[0]);
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
+        this.menuFormControl.get('image').setValue(file);
+        this.imageSrc = reader.result;
+      }
+      reader.readAsDataURL(file);
+      }
   }
 
   onSaveMenu() {
     let formData = new FormData();
-    formData.append('file',this.menuFormControl.get('fileUpload').value)
+    formData.append('file',this.menuFormControl.get('image').value);
     let menuData:any = {
-      english_name:this.menuFormControl.get('menuName').value,
-      arabic_name:this.menuFormControl.get('menuName').value,
+      english_name:this.menuFormControl.get('english_name').value,
+      arabic_name:this.menuFormControl.get('english_name').value,
       status:this.menuFormControl.get('status').value
     }
-    if (this.addMode) {
-      this._menuService.onAddImage(formData,menuData);
+    if(this.addMode){
+      this._menuService.onAddImage(formData,menuData,true);
     }else{
-      this._menuService.onEditMenu(formData)
+      formData.append('_id',this.editMenuData._id);
+      this._menuService.onAddImage(formData,menuData,false);
     }
   }
 

@@ -22,15 +22,14 @@ export class MenuComponent implements OnInit {
     this._menuService.menuChanged.subscribe((menu: Menu) => {
       console.log(menu);
     });
-    this._socketService.setupSocketConnection();
+    // this._socketService.setupSocketConnection();
   }
 
   onRemoveMenu(menuId:string) {
     this._menuService.removeMenu(menuId);
   }
 
-  onEditMenu(menuId:number) {
-    const menuItem: Menu = this._menuService.getMenuById(menuId);
+  onEditMenu(menuItem:any) {
     this._dialogBox.openEditableDialog(menuItem)
   }
 }

@@ -3,7 +3,8 @@
     <div class="menu-wrapper display-flex row-flex tile">
         <div *ngFor="let items of menu">
             <mat-card class="menu-card">
-                <img mat-card-image src='{{items.image ? items.image:"recipe.jpg"}}' alt={{items.image}}>
+                <img mat-card-image src="http://localhost:3000/upload/{{items.image ? items.image : recipe.jpg}}"
+                    alt={{items.image}}>
                 <mat-card-content>
                     <div class="item-name">{{ items.english_name }}</div>
                     <div *ngIf="items?.status === 'inactive'" class="status-div color-white content-bg-color">Inactive
@@ -14,7 +15,7 @@
                     <button mat-icon-button (click)="onRemoveMenu(items._id)">
                         <mat-icon>delete</mat-icon>
                     </button>
-                    <button mat-icon-button class="editbutton">
+                    <button mat-icon-button class="editbutton" (click)="onEditMenu(items)">
                         <mat-icon>edit</mat-icon>
                     </button>
                 </mat-card-actions>

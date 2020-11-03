@@ -29,7 +29,7 @@ export class CategoryComponent implements OnInit {
 
   onEditMenu(menuId:number) {
     console.log(this._menuService.getMenu())
-    const menuItem: Menu = this._menuService.getMenuById(menuId);
-    this._dialogBox.openEditableDialog(menuItem)
+    // const menuItem: Menu = this._menuService.getMenuById(menuId);
+    // this._dialogBox.openEditableDialog(menuItem)
   }
 }

@@ -58,7 +58,7 @@ export class AddcategoryComponent implements OnInit {
     if (this.addMode) {
       this._menuService.onAddMenu(formData);
     }else{
-      this._menuService.onEditMenu(formData)
+      // this._menuService.onEditMenu(formData)
     }
   }
 }
