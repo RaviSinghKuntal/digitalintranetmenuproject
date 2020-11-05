@@ -63,7 +63,7 @@ export class AddmenuComponent implements OnInit {
     if(typeof this.menuFormControl.get('image').value === 'object'){
       menuData['image'] = await this._menuService.onAddImage(formData);
       if(this.addMode){
-        this._menuService.onAddMenu(menuData);
+        await this._menuService.onAddMenu(menuData);
       }else{
         menuData['_id'] = this.editMenuData._id;
         this._menuService.onEditMenu(menuData);

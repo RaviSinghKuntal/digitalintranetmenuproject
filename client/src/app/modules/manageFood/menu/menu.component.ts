@@ -25,8 +25,8 @@ export class MenuComponent implements OnInit {
     // this._socketService.setupSocketConnection();
   }
 
-  onRemoveMenu(menuId:string) {
-    this._menuService.removeMenu(menuId);
+  async onRemoveMenu(menuId:string) {
+    await this._menuService.removeMenu(menuId);
   }
 
   onEditMenu(menuItem:any) {
