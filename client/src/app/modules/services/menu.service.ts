@@ -40,7 +40,6 @@ export class MenuService {
         }
         else
         {
-          menuData['_id'] = formData.get('_id');
           this.onEditMenu(menuData)
         }
       },
@@ -82,20 +81,6 @@ export class MenuService {
       })
     this.menuChanged.emit(this.menu.slice())
   }
-  
-  // public getImage(imageId:any){
-  //   return new Promise((resolve, reject) => {
-  //   this.http.get(`${this.SERVER_URL}/upload/${imageId}`, {responseType: 'blob'})
-  //   .subscribe(
-  //     (res:any) =>{
-  //       let xmlData = this.onFileChange(res);
-  //       return resolve(xmlData);
-  //     },
-  //     (err:any)=>{
-  //       reject(err);
-  //     });
-  //   });
-  // }
 
   public getMenuById(menuId:any) {
     return new Promise((resolve, reject) => {
@@ -136,16 +121,5 @@ export class MenuService {
         }
       );
   }
-
-  // onFileChange(file: any) {
-  //   console.log(file)
-  //     let xmlData;
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       xmlData = reader.result
-  //     }
-  //     reader.readAsDataURL(file);
-  //     return xmlData;
-  // }
 
   }

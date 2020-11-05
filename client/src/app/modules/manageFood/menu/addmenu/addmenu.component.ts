@@ -60,11 +60,17 @@ export class AddmenuComponent implements OnInit {
       arabic_name:this.menuFormControl.get('english_name').value,
       status:this.menuFormControl.get('status').value
     }
-    if(this.addMode){
-      this._menuService.onAddImage(formData,menuData,true);
-    }else{
-      formData.append('_id',this.editMenuData._id);
-      this._menuService.onAddImage(formData,menuData,false);
+
+    if(typeof this.menuFormControl.get('image').value === 'object' && this.addMode){
+      this._menuService.onAddImage(formData,menuData,this.addMode);
+    }else if(typeof this.menuFormControl.get('image').value === 'object'){
+      menuData['_id'] = this.editMenuData._id;
+      this._menuService.onAddImage(formData,menuData,this.addMode);
+    }
+    else{
+      menuData['_id'] = this.editMenuData._id;
+      menuData['image'] = this.menuFormControl.get('image').value;
+      this._menuService.onEditMenu(menuData);
     }
   }
 
