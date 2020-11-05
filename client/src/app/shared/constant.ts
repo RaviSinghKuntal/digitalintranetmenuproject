@@ -10,4 +10,8 @@ const status:any = {
     Inactive:"Inactive"
 }
 
-export { title,status }
+const  SERVER_URL='http://localhost:3000',
+const  ANGULAR_URL='http://localhost:4200'
+
+
+export { title,status,SERVER_URL }

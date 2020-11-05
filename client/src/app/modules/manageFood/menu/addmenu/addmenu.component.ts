@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
-import { status } from '../../../../shared/constant';
+import { status, SERVER_URL } from '../../../../shared/constant';
 import { ThemePalette } from '@angular/material/core';
 import { MenuService } from '../../../services/menu.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -29,7 +29,7 @@ export class AddmenuComponent implements OnInit {
     this.editMenuData = {...data};
     if(this.editMenuData.editMenu){
       this.addMode = false;
-      this.imageSrc = `http://localhost:3000/upload/${this.editMenuData.image}`;
+      this.imageSrc = `${SERVER_URL}/upload/${this.editMenuData.image}`;
       this.menuFormControl.patchValue({
         english_name: this.editMenuData.english_name,
         image: this.editMenuData.image,
@@ -52,7 +52,7 @@ export class AddmenuComponent implements OnInit {
       }
   }
 
-  onSaveMenu() {
+  async onSaveMenu() {
     let formData = new FormData();
     formData.append('file',this.menuFormControl.get('image').value);
     let menuData:any = {
@@ -60,14 +60,15 @@ export class AddmenuComponent implements OnInit {
       arabic_name:this.menuFormControl.get('english_name').value,
       status:this.menuFormControl.get('status').value
     }
-
-    if(typeof this.menuFormControl.get('image').value === 'object' && this.addMode){
-      this._menuService.onAddImage(formData,menuData,this.addMode);
-    }else if(typeof this.menuFormControl.get('image').value === 'object'){
-      menuData['_id'] = this.editMenuData._id;
-      this._menuService.onAddImage(formData,menuData,this.addMode);
-    }
-    else{
+    if(typeof this.menuFormControl.get('image').value === 'object'){
+      menuData['image'] = await this._menuService.onAddImage(formData);
+      if(this.addMode){
+        this._menuService.onAddMenu(menuData);
+      }else{
+        menuData['_id'] = this.editMenuData._id;
+        this._menuService.onEditMenu(menuData);
+      }
+    }else{
       menuData['_id'] = this.editMenuData._id;
       menuData['image'] = this.menuFormControl.get('image').value;
       this._menuService.onEditMenu(menuData);
