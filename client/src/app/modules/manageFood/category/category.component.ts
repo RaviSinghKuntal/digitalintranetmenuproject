@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { title }  from "../../../shared/constant";
-import { MenuService } from '../../services/menu.service';
-import { Menu } from '../../../models/menu.model';
+import { CategoryService } from '../../services/category.service';
+import { Category } from '../../../models/category.model';
 import { DialogBoxService } from '../../services/dialog.service';
 
 @Component({
@@ -11,25 +11,23 @@ import { DialogBoxService } from '../../services/dialog.service';
 })
 export class CategoryComponent implements OnInit {
   title: string = title.Category;
-  menu: any;
+  category: any;
 
-  constructor(private _menuService: MenuService,private _dialogBox: DialogBoxService) {
+  constructor(private _categoryService: CategoryService,private _dialogBox: DialogBoxService) {
   }
 
-  ngOnInit(): void {
-    this.menu = this._menuService.getMenu();
-    this._menuService.menuChanged.subscribe((menu: Menu[]) => {
-      this.menu = menu;
+  async ngOnInit(){
+    this.category = await this._categoryService.getCategory();
+    this._categoryService.categoryChanged.subscribe((category: Category[]) => {
+      this.category = category;
     });
   }
 
-  onRemoveMenu(menuId:number) {
-    this._menuService.removeMenu(menuId);
+  async onRemoveCategory(categoryId:number) {
+    await this._categoryService.removeCategory(categoryId);
   }
 
-  onEditMenu(menuId:number) {
-    console.log(this._menuService.getMenu())
-    // const menuItem: Menu = this._menuService.getMenuById(menuId);
-    // this._dialogBox.openEditableDialog(menuItem)
+  onEditCategory(categoryItem) {
+    this._dialogBox.openEditableDialog(categoryItem);
   }
 }

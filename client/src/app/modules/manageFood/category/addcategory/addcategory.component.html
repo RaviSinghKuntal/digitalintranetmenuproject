@@ -1,31 +1,28 @@
 <div class="width-550">
     <div>
-        <h2 class="content-color" mat-dialog-title>Add Menu</h2>
+        <h2 class="content-color" mat-dialog-title>Add Category</h2>
         <mat-divider></mat-divider>
     </div>
-    <div class="wrapper display-flex justify-space-around align-item-center">
-        <div>
-            <div [formGroup]="menuFormControl">
-                <mat-form-field appearance="standard">
-                    <mat-label>Menu</mat-label>
-                    <input matInput id="menuName" formControlName="menuName">
-                </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Status</mat-label>
-                    <mat-select formControlName="status">
-                        <mat-option value="active">Active</mat-option>
-                        <mat-option value="inactive">Inactive</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
+    <div class="wrapper display-flex justify-space-around">
+        <div [formGroup]="categoryFormControl" class="display-flex column-flex">
+            <mat-form-field appearance="standard">
+                <mat-label>Category</mat-label>
+                <input matInput id="english_name" formControlName="english_name">
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option value="active">Active</mat-option>
+                    <mat-option value="inactive">Inactive</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
         <div class="right-section align-item-center display-flex">
-            <div class="upload-img justify-center" *ngIf="this.menuFormControl.value.fileUpload.name">
-                <img class="recipe-img"
-                    src="../../../../../assets/images/{{this.menuFormControl.value.fileUpload.name}}">
+            <div class="upload-img justify-center" *ngIf="this.categoryFormControl.value.image">
+                <img class="recipe-img" src="imageSrc">
             </div>
             <div class="upload-img align-item-center justify-center display-flex add_a_photo"
-                *ngIf="!this.menuFormControl.value.fileUpload.name">
+                *ngIf="!this.categoryFormControl.value.image">
                 <img src="../../../../../assets/images/add_a_photo.png">
             </div>
             <button mat-button class="upload-btn btn">
@@ -41,6 +38,6 @@
     <mat-dialog-actions align="end">
         <button class="content-bg-color color-white btn" mat-flat-button mat-dialog-close>Cancel</button>
         <button class="content-bg-color color-white btn" mat-flat-button [mat-dialog-close]="true"
-            (click)="onSaveMenu()">Save</button>
+            (click)="onSaveCategory()">Save</button>
     </mat-dialog-actions>
 </div>

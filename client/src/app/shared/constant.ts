@@ -10,7 +10,7 @@ const status:any = {
     Inactive:"Inactive"
 }
 
-const  SERVER_URL='http://localhost:3000',
+const  SERVER_URL='http://localhost:3000'
 const  ANGULAR_URL='http://localhost:4200'
 
 

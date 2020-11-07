@@ -8,7 +8,6 @@ import { SERVER_URL } from '../../shared/constant';
 
 export class ApiService{
 
-    menuChanged = new EventEmitter<Menu[]>();
     constructor(private http: HttpClient) { }
 
     public getData(route) {

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { SERVER_URL } from '../../shared/constant';
 import { Menu } from '../../models/menu.model';
 import { EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from './api.service';
 
 @Injectable({

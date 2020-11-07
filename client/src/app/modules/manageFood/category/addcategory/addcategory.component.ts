@@ -1,38 +1,38 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
+import { status, SERVER_URL } from '../../../../shared/constant';
 import { ThemePalette } from '@angular/material/core';
-import { MenuService } from '../../../services/menu.service';
+import { CategoryService } from '../../../services/category.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { Menu } from 'src/app/models/menu.model';
+import { Category } from 'src/app/models/category.model';
 @Component({
   selector: 'app-addcategory',
   templateUrl: './addcategory.component.html',
   styleUrls: ['./addcategory.component.scss']
 })
 export class AddcategoryComponent implements OnInit {
-  menuFormControl: FormGroup;
+  categoryFormControl: FormGroup;
   color: ThemePalette = 'accent';
-  checked: boolean = false;
+  imageSrc:any;
   addMode: boolean = true;
-  editMenuData:any;
+  editCategoryData:any;
 
-  constructor(private _menuService: MenuService,public fb: FormBuilder,
+  constructor(private _categoryService: CategoryService,public fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data:any) {
-    this.menuFormControl = this.fb.group({
-      _id: Date.now(),
-      menuName: ['', Validators.required],
-      fileUpload: ['', [Validators.required]],
-      status: [this.checked],
+    this.categoryFormControl = this.fb.group({
+      english_name: ['', Validators.required],
+      image: ['', [Validators.required]],
+      status: [status.Active],
     });
 
-    this.editMenuData = {...data};
-    if(this.editMenuData.editMenu){
+    this.editCategoryData = {...data};
+    if(this.editCategoryData.editCategory){
       this.addMode = false;
-      this.menuFormControl.patchValue({ 
-        _id: this.editMenuData._id,
-        menuName: this.editMenuData.menuName,
-        fileUpload: this.editMenuData.fileUpload,
-        status: this.editMenuData.status 
+      this.imageSrc = `${SERVER_URL}/upload/${this.editCategoryData.image}`;
+      this.categoryFormControl.patchValue({
+        engish_name: this.editCategoryData.english_name,
+        image: this.editCategoryData.image,
+        status: this.editCategoryData.status 
       })
     }
   }
@@ -41,24 +41,37 @@ export class AddcategoryComponent implements OnInit {
 
   onFileChange(event: any) {
     if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
       const reader = new FileReader();
       reader.onload = () => {
-        this.menuFormControl.get('fileUpload').setValue(event.target.files[0]);
+        this.categoryFormControl.get('image').setValue(file);
+        this.imageSrc = reader.result;
+        console.log(this.imageSrc)
       };
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(file);
     }
   }
 
-  onSaveMenu() {
+  async onSaveCategory() {
     let formData = new FormData();
-    formData.append('_id', this.menuFormControl.get('_id').value);
-    formData.append('menuName', this.menuFormControl.get('menuName').value);
-    formData.append('fileUpload', this.menuFormControl.get('fileUpload').value);
-    formData.append('status', this.menuFormControl.get('status').value);
-    if (this.addMode) {
-      this._menuService.onAddMenu(formData);
+    formData.append('file',this.categoryFormControl.get('image').value);
+    let categoryData:any = {
+      english_name:this.categoryFormControl.get('english_name').value,
+      arabic_name:this.categoryFormControl.get('english_name').value,
+      status:this.categoryFormControl.get('status').value
+    }
+    if(typeof this.categoryFormControl.get('image').value === 'object'){
+      categoryData['image'] = await this._categoryService.onAddImage(formData);
+      if(this.addMode){
+        await this._categoryService.onAddCategory(categoryData);
+      }else{
+        categoryData['_id'] = this.editCategoryData._id;
+        this._categoryService.onEditCategory(categoryData);
+      }
     }else{
-      // this._menuService.onEditMenu(formData)
+      categoryData['_id'] = this.editCategoryData._id;
+      categoryData['image'] = this.categoryFormControl.get('image').value;
+      this._categoryService.onAddCategory(categoryData);
     }
   }
 }
